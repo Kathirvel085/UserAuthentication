@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background: #f4f6f9;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+        }
+
+            .sidebar h2 {
+                margin-bottom: 30px;
+                font-size: 20px;
+                text-align: center;
+            }
+
+            .sidebar ul {
+                list-style: none;
+            }
+
+                .sidebar ul li {
+                    margin: 15px 0;
+                }
+
+                    .sidebar ul li a {
+                        color: #fff;
+                        text-decoration: none;
+                        font-size: 15px;
+                        display: block;
+                        padding: 10px;
+                        border-radius: 6px;
+                        transition: 0.3s;
+                    }
+
+                        .sidebar ul li a:hover {
+                            background: #34495e;
+                        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Topbar */
+        .topbar {
+            background: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+            .topbar h2 {
+                font-size: 18px;
+                color: #333;
+            }
+
+        .user {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Dashboard Content */
+        .content {
+            padding: 20px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+            .card h3 {
+                font-size: 16px;
+                margin-bottom: 10px;
+                color: #555;
+            }
+
+            .card p {
+                font-size: 22px;
+                font-weight: bold;
+                color: #2c3e50;
+            }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>My Dashboard</h2>
+        <ul>
+            <li><a href="#">🏠 Home</a></li>
+            <li><a href="login.html">🚪 Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Topbar -->
+        <div class="topbar">
+            <h2>Dashboard Overview</h2>
+            <div class="user">Welcome, Admin</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <div class="cards">
+                <div class="card">
+                    <h3>Total Users</h3>
+                    <p>1,245</p>
+                </div>
+                <div class="card">
+                    <h3>Revenue</h3>
+                    <p>$58,200</p>
+                </div>
+                <div class="card">
+                    <h3>New Orders</h3>
+                    <p>320</p>
+                </div>
+                <div class="card">
+                    <h3>Feedback</h3>
+                    <p>85</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,262 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>OTP Verification</title>
+    <style>
+        :root {
+            --bg: #0f1724;
+            --card: #0b1220;
+            --accent: #6ee7b7;
+            --muted: #94a3b8;
+            --danger: #ff6b6b;
+            --glass: rgba(255,255,255,0.04);
+            --radius: 14px;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html, body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #071226 0%, #071226 40%, #081028 100%);
+            color: #e6eef8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 520px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border-radius: var(--radius);
+            padding: 28px;
+            border: 1px solid rgba(255,255,255,0.04);
+            box-shadow: 0 10px 35px rgba(2,6,23,0.6);
+        }
+
+        .logo {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 6px
+        }
+
+            .logo .mark {
+                width: 42px;
+                height: 42px;
+                border-radius: 10px;
+                background: linear-gradient(135deg,var(--accent),#60a5fa);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+                color: #042022
+            }
+
+        h1 {
+            margin: 6px 0 2px;
+            font-size: 20px
+        }
+
+        p.lead {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        .otp-area {
+            margin-top: 20px
+        }
+
+        .otp-instructions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px
+        }
+
+            .otp-instructions small {
+                color: var(--muted)
+            }
+
+        .otp-inputs {
+            display: flex;
+            gap: 10px;
+            justify-content: center
+        }
+
+            .otp-inputs input {
+                width: 56px;
+                height: 64px;
+                border-radius: 12px;
+                border: 1px solid rgba(255,255,255,0.06);
+                background: var(--glass);
+                font-size: 28px;
+                text-align: center;
+                color: var(--accent);
+                outline: none;
+                transition: all .12s ease-in-out;
+                caret-color: transparent;
+                font-weight: 600
+            }
+
+                .otp-inputs input:focus {
+                    transform: translateY(-4px);
+                    box-shadow: 0 6px 18px rgba(26,204,166,0.06);
+                    border-color: rgba(110,231,183,0.18);
+                    background: linear-gradient(180deg, rgba(110,231,183,0.03), rgba(255,255,255,0.01))
+                }
+
+                .otp-inputs input::placeholder {
+                    color: rgba(255,255,255,0.15);
+                    font-weight: 500
+                }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px
+        }
+
+        .resend {
+            font-size: 14px;
+            color: var(--muted)
+        }
+
+            .resend button {
+                background: none;
+                border: none;
+                color: var(--accent);
+                font-weight: 600;
+                cursor: pointer
+            }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-top: 20px
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 0;
+            background: linear-gradient(90deg,var(--accent),#60a5fa);
+            color: #042022;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 15px
+        }
+
+            .btn[disabled] {
+                opacity: 0.45;
+                cursor: not-allowed
+            }
+
+        .alt {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.04);
+            color: var(--muted);
+            padding: 10px 12px;
+            border-radius: 12px;
+            cursor: pointer
+        }
+
+        .help {
+            margin-top: 12px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .error {
+            margin-top: 12px;
+            color: var(--danger);
+            font-weight: 600;
+            text-align: center
+        }
+
+        .success {
+            margin-top: 12px;
+            color: var(--accent);
+            font-weight: 700;
+            text-align: center
+        }
+
+        @media (max-width:440px) {
+            .otp-inputs input {
+                width: 44px;
+                height: 54px;
+                font-size: 22px
+            }
+
+            .card {
+                padding: 18px
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="card" role="main" aria-labelledby="otp-heading">
+        <div class="logo">
+            <div class="mark" aria-hidden>•</div>
+            <div>
+                <h1 id="otp-heading">Verify your account</h1>
+                <p class="lead">Enter the 6-digit code</p>
+            </div>
+        </div>
+
+        <section class="otp-area" aria-label="OTP entry">
+            <div class="otp-instructions">
+                <small>Code expires in <span id="countdown">02:59</span></small>
+                <small>Didn't receive it?</small>
+            </div>
+
+            <form id="otp-form" autocomplete="one-time-code">
+                <div class="otp-inputs" role="group" aria-label="6 digit code">
+                    <input inputmode="numeric" maxlength="1" aria-label="Digit 1" placeholder="—" />
+                    <input inputmode="numeric" maxlength="1" aria-label="Digit 2" placeholder="—" />
+                    <input inputmode="numeric" maxlength="1" aria-label="Digit 3" placeholder="—" />
+                    <input inputmode="numeric" maxlength="1" aria-label="Digit 4" placeholder="—" />
+                    <input inputmode="numeric" maxlength="1" aria-label="Digit 5" placeholder="—" />
+                    <input inputmode="numeric" maxlength="1" aria-label="Digit 6" placeholder="—" />
+                </div>
+
+                <div class="meta">
+                    <div class="resend">Resend code in <button type="button" id="resend-btn" disabled aria-disabled="true">30s</button></div>
+                    <div style="font-size:13px;color:var(--muted)">Secure • Private</div>
+                </div>
+
+                <div class="actions">
+                    <button class="btn" id="verify" type="submit" disabled>Verify</button>
+                </div>
+
+                <div id="message" aria-live="polite"></div>
+            </form>
+
+            <p class="help">Tip: You can paste the full code from your messages.</p>
+        </section>
+    </main>
+
+    <script type="text/javascript" src="common.js"></script>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            attachOtpPageEvents();
+        });
+    </script>
+</body>
+</html>
